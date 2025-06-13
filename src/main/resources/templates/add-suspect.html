@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajouter un suspect</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f7fa;
+            display: flex;
+            height: 100vh;
+        }
+
+        .sidebar {
+            width: 220px;
+            background-color: #1e1e2f;
+            color: white;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar h3 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .sidebar a {
+            text-decoration: none;
+            color: #ccc;
+            padding: 12px;
+            margin: 5px 0;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            transition: background 0.3s;
+        }
+
+        .sidebar a:hover {
+            background-color: #333;
+            color: #fff;
+        }
+
+        .sidebar i {
+            margin-right: 10px;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+        }
+
+        .form-container {
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: 600;
+            color: #444;
+        }
+
+        input[type="text"],
+        input[type="date"] {
+            width: 100%;
+            padding: 10px 12px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #fdfdfd;
+        }
+
+        input:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        button {
+            margin-top: 25px;
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .success-message {
+            text-align: center;
+            color: green;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                display: none;
+            }
+
+            .main-content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Sidebar / Menu -->
+<div class="sidebar">
+    <h3>⚖️ Reconnaissance </h3>
+    <a href="/add-suspect"><i class="fas fa-user-plus"></i> Ajouter un suspect</a>
+    <a href="/suspects"><i class="fas fa-users"></i> Liste des suspects</a>
+    <a href="/events"><i class="fas fa-calendar-alt"></i> Prediction</a>
+    <a href="/logout"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
+</div>
+
+<!-- Contenu principal -->
+<div class="main-content">
+    <div class="form-container">
+        <h2>Ajouter un suspect</h2>
+
+        <form th:action="@{/add-suspect}" th:object="${suspect}" method="post">
+            <label>Nom:</label>
+            <input type="text" th:field="*{name}" />
+
+            <label>Prénom:</label>
+            <input type="text" th:field="*{firstname}" />
+
+            <label>Type de pièce:</label>
+            <input type="text" th:field="*{identityDocument}" />
+
+            <label>Numéro de pièce:</label>
+            <input type="text" th:field="*{identityString}" />
+
+            <label>Date de l'évènement:</label>
+            <input type="date" th:field="*{evtDate}" />
+
+            <label>Latitude:</label>
+            <input type="text" th:field="*{lat}" />
+
+            <label>Longitude:</label>
+            <input type="text" th:field="*{lng}" />
+
+            <label>RUS_ID:</label>
+            <input type="text" th:field="*{rusId}" />
+
+            <label>Remarque:</label>
+            <input type="text" th:field="*{remarqueText}" />
+
+            <label>ImagePath:</label>
+            <input type="text" th:field="*{imagePath}" />
+
+            <label>Unique Token:</label>
+            <input type="text" th:field="*{uniqueToken}" />
+
+            <label>Statut:</label>
+            <input type="text" th:field="*{statut}" />
+
+            <button type="submit">✅ Enregistrer</button>
+        </form>
+
+        <!--        <div class="success-message" th:if="${param.success}">-->
+        <!--            Suspect ajouté avec succès !-->
+        <!--        </div>-->
+    </div>
+</div>
+
+</body>
+</html>
