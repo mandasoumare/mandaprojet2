@@ -32,6 +32,4 @@ build/
 ### VS Code ###
 .vscode/
 
-# Fichiers de configuration sensibles
-application.properties
-application.yml
+
